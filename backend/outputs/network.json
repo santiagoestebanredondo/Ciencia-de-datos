@@ -1,0 +1,1159 @@
+{
+    "nodes": [
+        {
+            "id": "Juan Pérez",
+            "layer": "actores",
+            "node_type": "actor"
+        },
+        {
+            "id": "Carlos Rodríguez",
+            "layer": "actores",
+            "node_type": "actor"
+        },
+        {
+            "id": "Código Civil",
+            "layer": "actores",
+            "node_type": "actor"
+        },
+        {
+            "id": "La Constitución Política",
+            "layer": "actores",
+            "node_type": "actor"
+        },
+        {
+            "id": "Corte Suprema",
+            "layer": "actores",
+            "node_type": "actor"
+        },
+        {
+            "id": "FACT_HPN-001",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "DEMANDA DE INCUMPLIMIENTO \nCONTRACTUAL \nJUZGADO CIVIL MUNICIPAL \nDemandante \nJuan Pérez identificado con cédula de ciudadanía No"
+        },
+        {
+            "id": "FACT_HPN-002",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "Demandado \nComercializadora ABC S"
+        },
+        {
+            "id": "FACT_HPN-003",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "identificada con NIT 900123456"
+        },
+        {
+            "id": "FACT_HPN-004",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ El día 15 de enero de 2025 Juan Pérez celebró contrato de compraventa con \nComercializadora ABC S"
+        },
+        {
+            "id": "FACT_HPN-005",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Según el contrato firmado por ambas partes, la empresa debía entregar la \nmaquinaria adquirida antes del 15 de febrero de 2025"
+        },
+        {
+            "id": "FACT_HPN-006",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Llegada la fecha pactada, la maquinaria no fue entregada"
+        },
+        {
+            "id": "FACT_HPN-007",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ El demandante envió correos electrónicos los días 20 de febrero, 5 de marzo y 15 de \nmarzo de 2025 solicitando el cumplimiento del contrato"
+        },
+        {
+            "id": "FACT_HPN-008",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ La empresa respondió indicando problemas logísticos internos"
+        },
+        {
+            "id": "FACT_HPN-009",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Como consecuencia del incumplimiento, el demandante perdió oportunidades \ncomerciales valoradas en $15"
+        },
+        {
+            "id": "FACT_HPN-010",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "PRUEBAS \nPrueba documental 1 \nContrato de compraventa firmado el 15 de enero de 2025"
+        },
+        {
+            "id": "FACT_HPN-011",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "Prueba documental 2 \nCorreos electrónicos intercambiados entre las partes"
+        },
+        {
+            "id": "FACT_HPN-012",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "Prueba testimonial \nDeclaración del señor Carlos Rodríguez, testigo presencial de la negociación"
+        },
+        {
+            "id": "FACT_HPN-013",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "Prueba pericial \nInforme técnico sobre los perjuicios económicos ocasionados por la falta de entrega"
+        },
+        {
+            "id": "FACT_HPN-014",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "FUNDAMENTOS DE DERECHO \nDe conformidad con el artículo 1602 del Código Civil, todo contrato legalmente celebrado es \nuna ley para las partes"
+        },
+        {
+            "id": "FACT_HPN-015",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "Asimismo, el artículo 1613 del Código Civil establece la obligación de indemnizar los \nperjuicios derivados del incumplimiento contractual"
+        },
+        {
+            "id": "FACT_HPN-016",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "La Constitución Política protege el derecho al debido proceso y al acceso a la \nadministración de justicia"
+        },
+        {
+            "id": "FACT_HPN-017",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "La jurisprudencia de la Corte Suprema de Justicia ha reiterado que el incumplimiento \ncontractual genera responsabilidad civil cuando se acredita daño y nexo causal"
+        },
+        {
+            "id": "FACT_HPN-018",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Declarar el incumplimiento contractual por parte de Comercializadora ABC S"
+        },
+        {
+            "id": "FACT_HPN-019",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Condenar a la demandada al pago de los perjuicios ocasionados"
+        },
+        {
+            "id": "FACT_HPN-020",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Condenar al pago de costas procesales"
+        },
+        {
+            "id": "FACT_HPN-021",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Riesgo de insuficiencia probatoria si el testigo no comparece"
+        },
+        {
+            "id": "FACT_HPN-022",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Riesgo de contradicción entre el informe pericial y los documentos aportados"
+        },
+        {
+            "id": "FACT_HPN-023",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "​ Riesgo de discusión sobre la cuantificación de perjuicios"
+        },
+        {
+            "id": "FACT_HPN-024",
+            "layer": "hechos",
+            "node_type": "hecho",
+            "label": "El demandante considera que existen suficientes pruebas para demostrar el incumplimiento \ncontractual y solicita que se accedan a las pretensiones formuladas en esta demanda"
+        },
+        {
+            "id": "EVIDENCE_HPN-001",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "contrato"
+        },
+        {
+            "id": "EVIDENCE_HPN-002",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "correo"
+        },
+        {
+            "id": "EVIDENCE_HPN-003",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "contrato"
+        },
+        {
+            "id": "EVIDENCE_HPN-004",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "factura"
+        },
+        {
+            "id": "EVIDENCE_HPN-005",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "documento"
+        },
+        {
+            "id": "EVIDENCE_HPN-006",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-007",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-008",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-009",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-010",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-011",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-012",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-013",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-014",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-015",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-016",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-017",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-018",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-019",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-020",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-021",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-022",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-023",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "EVIDENCE_HPN-024",
+            "layer": "pruebas",
+            "node_type": "prueba",
+            "label": "Sin prueba"
+        },
+        {
+            "id": "NORM_HPN-001",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "ley"
+        },
+        {
+            "id": "NORM_HPN-002",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "artículo"
+        },
+        {
+            "id": "NORM_HPN-003",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "constitución"
+        },
+        {
+            "id": "NORM_HPN-004",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "jurisprudencia"
+        },
+        {
+            "id": "NORM_HPN-005",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-006",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-007",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-008",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-009",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-010",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-011",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-012",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-013",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-014",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-015",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-016",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-017",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-018",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-019",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-020",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-021",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-022",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-023",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "NORM_HPN-024",
+            "layer": "normas",
+            "node_type": "norma",
+            "label": "Sin norma"
+        },
+        {
+            "id": "RISK_HPN-001",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Bajo"
+        },
+        {
+            "id": "RISK_HPN-002",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Bajo"
+        },
+        {
+            "id": "RISK_HPN-003",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Bajo"
+        },
+        {
+            "id": "RISK_HPN-004",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Bajo"
+        },
+        {
+            "id": "RISK_HPN-005",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-006",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-007",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-008",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-009",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-010",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-011",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-012",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-013",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-014",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-015",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-016",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-017",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-018",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-019",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-020",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-021",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-022",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-023",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        },
+        {
+            "id": "RISK_HPN-024",
+            "layer": "riesgos",
+            "node_type": "riesgo",
+            "label": "Alto"
+        }
+    ],
+    "edges": [
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-001",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-002",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-003",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-004",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-005",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-006",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-007",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-008",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-009",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-010",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-011",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-012",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-013",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-014",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-015",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-016",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-017",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-018",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-019",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-020",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-021",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-022",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-023",
+            "relation": "participa"
+        },
+        {
+            "source": "Juan Pérez",
+            "target": "FACT_HPN-024",
+            "relation": "participa"
+        },
+        {
+            "source": "FACT_HPN-001",
+            "target": "NORM_HPN-001",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-002",
+            "target": "NORM_HPN-002",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-003",
+            "target": "NORM_HPN-003",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-004",
+            "target": "NORM_HPN-004",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-005",
+            "target": "NORM_HPN-005",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-006",
+            "target": "NORM_HPN-006",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-007",
+            "target": "NORM_HPN-007",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-008",
+            "target": "NORM_HPN-008",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-009",
+            "target": "NORM_HPN-009",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-010",
+            "target": "NORM_HPN-010",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-011",
+            "target": "NORM_HPN-011",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-012",
+            "target": "NORM_HPN-012",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-013",
+            "target": "NORM_HPN-013",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-014",
+            "target": "NORM_HPN-014",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-015",
+            "target": "NORM_HPN-015",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-016",
+            "target": "NORM_HPN-016",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-017",
+            "target": "NORM_HPN-017",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-018",
+            "target": "NORM_HPN-018",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-019",
+            "target": "NORM_HPN-019",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-020",
+            "target": "NORM_HPN-020",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-021",
+            "target": "NORM_HPN-021",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-022",
+            "target": "NORM_HPN-022",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-023",
+            "target": "NORM_HPN-023",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "FACT_HPN-024",
+            "target": "NORM_HPN-024",
+            "relation": "activa",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-001",
+            "target": "FACT_HPN-001",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-002",
+            "target": "FACT_HPN-002",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-003",
+            "target": "FACT_HPN-003",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-004",
+            "target": "FACT_HPN-004",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-005",
+            "target": "FACT_HPN-005",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-006",
+            "target": "FACT_HPN-006",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-007",
+            "target": "FACT_HPN-007",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-008",
+            "target": "FACT_HPN-008",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-009",
+            "target": "FACT_HPN-009",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-010",
+            "target": "FACT_HPN-010",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-011",
+            "target": "FACT_HPN-011",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-012",
+            "target": "FACT_HPN-012",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-013",
+            "target": "FACT_HPN-013",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-014",
+            "target": "FACT_HPN-014",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-015",
+            "target": "FACT_HPN-015",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-016",
+            "target": "FACT_HPN-016",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-017",
+            "target": "FACT_HPN-017",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-018",
+            "target": "FACT_HPN-018",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-019",
+            "target": "FACT_HPN-019",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-020",
+            "target": "FACT_HPN-020",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-021",
+            "target": "FACT_HPN-021",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-022",
+            "target": "FACT_HPN-022",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-023",
+            "target": "FACT_HPN-023",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "EVIDENCE_HPN-024",
+            "target": "FACT_HPN-024",
+            "relation": "soporta",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-001",
+            "target": "FACT_HPN-001",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-002",
+            "target": "FACT_HPN-002",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-003",
+            "target": "FACT_HPN-003",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-004",
+            "target": "FACT_HPN-004",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-005",
+            "target": "FACT_HPN-005",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-006",
+            "target": "FACT_HPN-006",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-007",
+            "target": "FACT_HPN-007",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-008",
+            "target": "FACT_HPN-008",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-009",
+            "target": "FACT_HPN-009",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-010",
+            "target": "FACT_HPN-010",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-011",
+            "target": "FACT_HPN-011",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-012",
+            "target": "FACT_HPN-012",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-013",
+            "target": "FACT_HPN-013",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-014",
+            "target": "FACT_HPN-014",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-015",
+            "target": "FACT_HPN-015",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-016",
+            "target": "FACT_HPN-016",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-017",
+            "target": "FACT_HPN-017",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-018",
+            "target": "FACT_HPN-018",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-019",
+            "target": "FACT_HPN-019",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-020",
+            "target": "FACT_HPN-020",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-021",
+            "target": "FACT_HPN-021",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-022",
+            "target": "FACT_HPN-022",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-023",
+            "target": "FACT_HPN-023",
+            "relation": "riesgo",
+            "weight": 1
+        },
+        {
+            "source": "RISK_HPN-024",
+            "target": "FACT_HPN-024",
+            "relation": "riesgo",
+            "weight": 1
+        }
+    ]
+}

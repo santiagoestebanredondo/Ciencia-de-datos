@@ -1,0 +1,45 @@
+id,elemento_juridico,hecho,prueba,norma,fuente_expediente,estado_epistemico,riesgo,contradicciones,accion_sugerida,agente_responsable,revision_humana
+HPN-001,Pendiente Clasificación,"DEMANDA DE INCUMPLIMIENTO 
+CONTRACTUAL 
+JUZGADO CIVIL MUNICIPAL 
+Demandante 
+Juan Pérez identificado con cédula de ciudadanía No",contrato,ley,Página 1,Completo,Bajo,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-002,Pendiente Clasificación,"Demandado 
+Comercializadora ABC S",correo,artículo,Página 1,Completo,Bajo,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-003,Pendiente Clasificación,identificada con NIT 900123456,contrato,constitución,Página 1,Completo,Bajo,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-004,Pendiente Clasificación,"​ El día 15 de enero de 2025 Juan Pérez celebró contrato de compraventa con 
+Comercializadora ABC S",factura,jurisprudencia,Página 1,Completo,Bajo,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-005,Pendiente Clasificación,"​ Según el contrato firmado por ambas partes, la empresa debía entregar la 
+maquinaria adquirida antes del 15 de febrero de 2025",documento,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-006,Pendiente Clasificación,"​ Llegada la fecha pactada, la maquinaria no fue entregada",Sin prueba,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-007,Pendiente Clasificación,"​ El demandante envió correos electrónicos los días 20 de febrero, 5 de marzo y 15 de 
+marzo de 2025 solicitando el cumplimiento del contrato",Sin prueba,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-008,Pendiente Clasificación,​ La empresa respondió indicando problemas logísticos internos,Sin prueba,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-009,Pendiente Clasificación,"​ Como consecuencia del incumplimiento, el demandante perdió oportunidades 
+comerciales valoradas en $15",Sin prueba,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-010,Pendiente Clasificación,"PRUEBAS 
+Prueba documental 1 
+Contrato de compraventa firmado el 15 de enero de 2025",Sin prueba,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-011,Pendiente Clasificación,"Prueba documental 2 
+Correos electrónicos intercambiados entre las partes",Sin prueba,Sin norma,Página 1,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-012,Pendiente Clasificación,"Prueba testimonial 
+Declaración del señor Carlos Rodríguez, testigo presencial de la negociación",Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-013,Pendiente Clasificación,"Prueba pericial 
+Informe técnico sobre los perjuicios económicos ocasionados por la falta de entrega",Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-014,Pendiente Clasificación,"FUNDAMENTOS DE DERECHO 
+De conformidad con el artículo 1602 del Código Civil, todo contrato legalmente celebrado es 
+una ley para las partes",Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-015,Pendiente Clasificación,"Asimismo, el artículo 1613 del Código Civil establece la obligación de indemnizar los 
+perjuicios derivados del incumplimiento contractual",Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-016,Pendiente Clasificación,"La Constitución Política protege el derecho al debido proceso y al acceso a la 
+administración de justicia",Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-017,Pendiente Clasificación,"La jurisprudencia de la Corte Suprema de Justicia ha reiterado que el incumplimiento 
+contractual genera responsabilidad civil cuando se acredita daño y nexo causal",Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-018,Pendiente Clasificación,​ Declarar el incumplimiento contractual por parte de Comercializadora ABC S,Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-019,Pendiente Clasificación,​ Condenar a la demandada al pago de los perjuicios ocasionados,Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-020,Pendiente Clasificación,​ Condenar al pago de costas procesales,Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-021,Pendiente Clasificación,​ Riesgo de insuficiencia probatoria si el testigo no comparece,Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-022,Pendiente Clasificación,​ Riesgo de contradicción entre el informe pericial y los documentos aportados,Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-023,Pendiente Clasificación,​ Riesgo de discusión sobre la cuantificación de perjuicios,Sin prueba,Sin norma,Página 2,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente
+HPN-024,Pendiente Clasificación,"El demandante considera que existen suficientes pruebas para demostrar el incumplimiento 
+contractual y solicita que se accedan a las pretensiones formuladas en esta demanda",Sin prueba,Sin norma,Página 3,Parcial,Alto,Ninguna,Validar soporte,Agente HPN,Pendiente

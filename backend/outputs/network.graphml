@@ -1,0 +1,890 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d4" for="edge" attr.name="weight" attr.type="long" />
+  <key id="d3" for="edge" attr.name="relation" attr.type="string" />
+  <key id="d2" for="node" attr.name="label" attr.type="string" />
+  <key id="d1" for="node" attr.name="node_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="layer" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="Juan Pérez">
+      <data key="d0">actores</data>
+      <data key="d1">actor</data>
+    </node>
+    <node id="Carlos Rodríguez">
+      <data key="d0">actores</data>
+      <data key="d1">actor</data>
+    </node>
+    <node id="Código Civil">
+      <data key="d0">actores</data>
+      <data key="d1">actor</data>
+    </node>
+    <node id="La Constitución Política">
+      <data key="d0">actores</data>
+      <data key="d1">actor</data>
+    </node>
+    <node id="Corte Suprema">
+      <data key="d0">actores</data>
+      <data key="d1">actor</data>
+    </node>
+    <node id="FACT_HPN-001">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">DEMANDA DE INCUMPLIMIENTO 
+CONTRACTUAL 
+JUZGADO CIVIL MUNICIPAL 
+Demandante 
+Juan Pérez identificado con cédula de ciudadanía No</data>
+    </node>
+    <node id="FACT_HPN-002">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">Demandado 
+Comercializadora ABC S</data>
+    </node>
+    <node id="FACT_HPN-003">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">identificada con NIT 900123456</data>
+    </node>
+    <node id="FACT_HPN-004">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ El día 15 de enero de 2025 Juan Pérez celebró contrato de compraventa con 
+Comercializadora ABC S</data>
+    </node>
+    <node id="FACT_HPN-005">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Según el contrato firmado por ambas partes, la empresa debía entregar la 
+maquinaria adquirida antes del 15 de febrero de 2025</data>
+    </node>
+    <node id="FACT_HPN-006">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Llegada la fecha pactada, la maquinaria no fue entregada</data>
+    </node>
+    <node id="FACT_HPN-007">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ El demandante envió correos electrónicos los días 20 de febrero, 5 de marzo y 15 de 
+marzo de 2025 solicitando el cumplimiento del contrato</data>
+    </node>
+    <node id="FACT_HPN-008">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ La empresa respondió indicando problemas logísticos internos</data>
+    </node>
+    <node id="FACT_HPN-009">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Como consecuencia del incumplimiento, el demandante perdió oportunidades 
+comerciales valoradas en $15</data>
+    </node>
+    <node id="FACT_HPN-010">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">PRUEBAS 
+Prueba documental 1 
+Contrato de compraventa firmado el 15 de enero de 2025</data>
+    </node>
+    <node id="FACT_HPN-011">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">Prueba documental 2 
+Correos electrónicos intercambiados entre las partes</data>
+    </node>
+    <node id="FACT_HPN-012">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">Prueba testimonial 
+Declaración del señor Carlos Rodríguez, testigo presencial de la negociación</data>
+    </node>
+    <node id="FACT_HPN-013">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">Prueba pericial 
+Informe técnico sobre los perjuicios económicos ocasionados por la falta de entrega</data>
+    </node>
+    <node id="FACT_HPN-014">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">FUNDAMENTOS DE DERECHO 
+De conformidad con el artículo 1602 del Código Civil, todo contrato legalmente celebrado es 
+una ley para las partes</data>
+    </node>
+    <node id="FACT_HPN-015">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">Asimismo, el artículo 1613 del Código Civil establece la obligación de indemnizar los 
+perjuicios derivados del incumplimiento contractual</data>
+    </node>
+    <node id="FACT_HPN-016">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">La Constitución Política protege el derecho al debido proceso y al acceso a la 
+administración de justicia</data>
+    </node>
+    <node id="FACT_HPN-017">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">La jurisprudencia de la Corte Suprema de Justicia ha reiterado que el incumplimiento 
+contractual genera responsabilidad civil cuando se acredita daño y nexo causal</data>
+    </node>
+    <node id="FACT_HPN-018">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Declarar el incumplimiento contractual por parte de Comercializadora ABC S</data>
+    </node>
+    <node id="FACT_HPN-019">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Condenar a la demandada al pago de los perjuicios ocasionados</data>
+    </node>
+    <node id="FACT_HPN-020">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Condenar al pago de costas procesales</data>
+    </node>
+    <node id="FACT_HPN-021">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Riesgo de insuficiencia probatoria si el testigo no comparece</data>
+    </node>
+    <node id="FACT_HPN-022">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Riesgo de contradicción entre el informe pericial y los documentos aportados</data>
+    </node>
+    <node id="FACT_HPN-023">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">​ Riesgo de discusión sobre la cuantificación de perjuicios</data>
+    </node>
+    <node id="FACT_HPN-024">
+      <data key="d0">hechos</data>
+      <data key="d1">hecho</data>
+      <data key="d2">El demandante considera que existen suficientes pruebas para demostrar el incumplimiento 
+contractual y solicita que se accedan a las pretensiones formuladas en esta demanda</data>
+    </node>
+    <node id="EVIDENCE_HPN-001">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">contrato</data>
+    </node>
+    <node id="EVIDENCE_HPN-002">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">correo</data>
+    </node>
+    <node id="EVIDENCE_HPN-003">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">contrato</data>
+    </node>
+    <node id="EVIDENCE_HPN-004">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">factura</data>
+    </node>
+    <node id="EVIDENCE_HPN-005">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">documento</data>
+    </node>
+    <node id="EVIDENCE_HPN-006">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-007">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-008">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-009">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-010">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-011">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-012">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-013">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-014">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-015">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-016">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-017">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-018">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-019">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-020">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-021">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-022">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-023">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="EVIDENCE_HPN-024">
+      <data key="d0">pruebas</data>
+      <data key="d1">prueba</data>
+      <data key="d2">Sin prueba</data>
+    </node>
+    <node id="NORM_HPN-001">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">ley</data>
+    </node>
+    <node id="NORM_HPN-002">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">artículo</data>
+    </node>
+    <node id="NORM_HPN-003">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">constitución</data>
+    </node>
+    <node id="NORM_HPN-004">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">jurisprudencia</data>
+    </node>
+    <node id="NORM_HPN-005">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-006">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-007">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-008">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-009">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-010">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-011">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-012">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-013">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-014">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-015">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-016">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-017">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-018">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-019">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-020">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-021">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-022">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-023">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="NORM_HPN-024">
+      <data key="d0">normas</data>
+      <data key="d1">norma</data>
+      <data key="d2">Sin norma</data>
+    </node>
+    <node id="RISK_HPN-001">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Bajo</data>
+    </node>
+    <node id="RISK_HPN-002">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Bajo</data>
+    </node>
+    <node id="RISK_HPN-003">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Bajo</data>
+    </node>
+    <node id="RISK_HPN-004">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Bajo</data>
+    </node>
+    <node id="RISK_HPN-005">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-006">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-007">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-008">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-009">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-010">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-011">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-012">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-013">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-014">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-015">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-016">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-017">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-018">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-019">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-020">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-021">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-022">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-023">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <node id="RISK_HPN-024">
+      <data key="d0">riesgos</data>
+      <data key="d1">riesgo</data>
+      <data key="d2">Alto</data>
+    </node>
+    <edge source="Juan Pérez" target="FACT_HPN-001">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-002">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-003">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-004">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-005">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-006">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-007">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-008">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-009">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-010">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-011">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-012">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-013">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-014">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-015">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-016">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-017">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-018">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-019">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-020">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-021">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-022">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-023">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="Juan Pérez" target="FACT_HPN-024">
+      <data key="d3">participa</data>
+    </edge>
+    <edge source="FACT_HPN-001" target="NORM_HPN-001">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-002" target="NORM_HPN-002">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-003" target="NORM_HPN-003">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-004" target="NORM_HPN-004">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-005" target="NORM_HPN-005">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-006" target="NORM_HPN-006">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-007" target="NORM_HPN-007">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-008" target="NORM_HPN-008">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-009" target="NORM_HPN-009">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-010" target="NORM_HPN-010">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-011" target="NORM_HPN-011">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-012" target="NORM_HPN-012">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-013" target="NORM_HPN-013">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-014" target="NORM_HPN-014">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-015" target="NORM_HPN-015">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-016" target="NORM_HPN-016">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-017" target="NORM_HPN-017">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-018" target="NORM_HPN-018">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-019" target="NORM_HPN-019">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-020" target="NORM_HPN-020">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-021" target="NORM_HPN-021">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-022" target="NORM_HPN-022">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-023" target="NORM_HPN-023">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="FACT_HPN-024" target="NORM_HPN-024">
+      <data key="d3">activa</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-001" target="FACT_HPN-001">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-002" target="FACT_HPN-002">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-003" target="FACT_HPN-003">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-004" target="FACT_HPN-004">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-005" target="FACT_HPN-005">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-006" target="FACT_HPN-006">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-007" target="FACT_HPN-007">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-008" target="FACT_HPN-008">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-009" target="FACT_HPN-009">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-010" target="FACT_HPN-010">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-011" target="FACT_HPN-011">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-012" target="FACT_HPN-012">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-013" target="FACT_HPN-013">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-014" target="FACT_HPN-014">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-015" target="FACT_HPN-015">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-016" target="FACT_HPN-016">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-017" target="FACT_HPN-017">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-018" target="FACT_HPN-018">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-019" target="FACT_HPN-019">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-020" target="FACT_HPN-020">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-021" target="FACT_HPN-021">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-022" target="FACT_HPN-022">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-023" target="FACT_HPN-023">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="EVIDENCE_HPN-024" target="FACT_HPN-024">
+      <data key="d3">soporta</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-001" target="FACT_HPN-001">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-002" target="FACT_HPN-002">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-003" target="FACT_HPN-003">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-004" target="FACT_HPN-004">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-005" target="FACT_HPN-005">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-006" target="FACT_HPN-006">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-007" target="FACT_HPN-007">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-008" target="FACT_HPN-008">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-009" target="FACT_HPN-009">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-010" target="FACT_HPN-010">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-011" target="FACT_HPN-011">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-012" target="FACT_HPN-012">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-013" target="FACT_HPN-013">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-014" target="FACT_HPN-014">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-015" target="FACT_HPN-015">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-016" target="FACT_HPN-016">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-017" target="FACT_HPN-017">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-018" target="FACT_HPN-018">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-019" target="FACT_HPN-019">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-020" target="FACT_HPN-020">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-021" target="FACT_HPN-021">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-022" target="FACT_HPN-022">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-023" target="FACT_HPN-023">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+    <edge source="RISK_HPN-024" target="FACT_HPN-024">
+      <data key="d3">riesgo</data>
+      <data key="d4">1</data>
+    </edge>
+  </graph>
+</graphml>

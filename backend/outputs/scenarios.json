@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Exclusión de prueba",
+        "nodes": 101,
+        "edges": 95
+    },
+    {
+        "name": "Nuevo peritaje",
+        "nodes": 102,
+        "edges": 96
+    },
+    {
+        "name": "Testigo contradictorio",
+        "nodes": 102,
+        "edges": 96
+    },
+    {
+        "name": "Nueva norma favorable",
+        "nodes": 102,
+        "edges": 96
+    }
+]
