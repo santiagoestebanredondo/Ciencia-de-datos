@@ -1,40 +1,27 @@
-function DashboardTabs({
-  currentTab,
-  setCurrentTab
-}) {
-
+function DashboardTabs({ currentTab, setCurrentTab }) {
   const tabs = [
-    "Resumen",
-    "HPN",
-    "Red",
+    "Vista General",
+    "Matriz HPN",
+    "Red Multicapa",
     "Métricas",
-    "Escenarios"
+    "Alertas",
+    "Simulador",
+    "Preguntas",
+    "Reporte",
   ];
 
   return (
-
     <div className="tabs-container">
-
-      {tabs.map(tab => (
-
+      {tabs.map((tab) => (
         <button
           key={tab}
-          className={
-            currentTab === tab
-              ? "tab active"
-              : "tab"
-          }
-          onClick={() =>
-            setCurrentTab(tab)
-          }
+          className={currentTab === tab ? "tab active" : "tab"}
+          onClick={() => setCurrentTab(tab)}
         >
           {tab}
         </button>
-
       ))}
-
     </div>
-
   );
 }
 

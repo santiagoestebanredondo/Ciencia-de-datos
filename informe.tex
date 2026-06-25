@@ -1,0 +1,468 @@
+% ============================================================
+%  Informe de Arquitectura Multiagente para Teoría del Caso Aumentada
+%  Formato APA 7ª edición
+%  Autores: Santiago Esteban Redondo Perdomo, Juan David Conde Duarte
+%  Materia: Ciencia de Datos
+% ============================================================
+\documentclass[12pt, letterpaper]{article}
+
+% ---- Paquetes esenciales ----
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}            % Times New Roman (aproximación APA)
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}          % Espacio entre párrafos, sin sangría
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{titlesec}
+
+% ---- Formato APA ----
+\doublespacing
+\setlength{\parindent}{0.5in}
+
+% ---- Encabezado (running head) ----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Arquitectura Multiagente para Teoría del Caso}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% ---- Portada ----
+\title{\textbf{Informe de Arquitectura Multiagente para Teoría del Caso Aumentada}}
+\author{
+  Santiago Esteban Redondo Perdomo \\
+  Juan David Conde Duarte \\
+  \\
+  \textit{Ciencia de Datos}
+}
+\date{}
+
+% ---- Formato de títulos APA (sin negrita excesiva) ----
+\titleformat{\section}{\normalfont\bfseries\centering}{}{0em}{}
+\titleformat{\subsection}{\normalfont\bfseries\centering}{}{0em}{}
+\titleformat{\subsubsection}{\normalfont\bfseries}{}{0em}{}
+
+% ---- Configuración de listings ----
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  frame=single,
+  numbers=none,
+  captionpos=t,
+  aboveskip=12pt,
+  belowskip=6pt,
+}
+
+\begin{document}
+
+% ---- PORTADA ----
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{2cm}
+  {\LARGE\bfseries Informe de Arquitectura Multiagente para \\[6pt]
+  Teoría del Caso Aumentada}\\[2cm]
+  {\large Santiago Esteban Redondo Perdomo \\[4pt]
+  Juan David Conde Duarte}\\[1.5cm]
+  {\large Ciencia de Datos}\\[1cm]
+  {\large \today}\\[1cm]
+  \vfill
+\end{center}
+\newpage
+
+% ---- CUERPO ----
+
+\section{Introducción}
+
+El presente informe analiza la arquitectura de un sistema multiagente
+diseñado para asistir en la construcción de la teoría del caso en el
+ámbito del litigio jurídico. El sistema procesa documentos PDF de
+demandas y escritos legales, extrayendo自动mente entidades
+(actores, hechos, pruebas y normas), construyendo una matriz
+Hecho-Prueba-Norma (HPN), generando una red multicapa de conocimiento,
+calculando métricas estratégicas y simulando escenarios hipotéticos.
+El frontend presenta un panel visual (dashboard) que traduce estos
+datos en señales accionables para el litigante.
+
+A continuación se presentan el análisis de utilidad, las limitaciones
+identificadas, los errores encontrados durante el desarrollo y las
+decisiones humanas que el sistema no puede reemplazar.
+
+\section{Análisis de Utilidad}
+
+\subsection{Automatización de la extracción de entidades}
+
+El sistema emplea cuatro agentes especializados que reemplazan la
+lectura manual del expediente:
+
+\begin{itemize}[nosep]
+  \item \textbf{Agente de Hechos} (\texttt{FactualAgent}): Divide el
+    texto del PDF en oraciones, identifica fechas mediante
+    expresiones regulares (\texttt{\textbackslash d\{1,2\}/\textbackslash
+    d\{1,2\}/\textbackslash d\{4\}}) y filtra oraciones con más de
+    30 caracteres como hechos jurídicos potenciales.
+  \item \textbf{Agente de Actores} (\texttt{ActorsAgent}): Extrae
+    nombres propios de personas usando el patrón
+    \texttt{[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\textbackslash s[A-ZÁÉÍÓÚÑ]
+    [a-záéíóúñ]+)\{1,2\}}, filtrando términos legales (``código'',
+    ``constitución'', ``juzgado'', etc.).
+  \item \textbf{Agente de Pruebas} (\texttt{EvidenceAgent}): Detecta
+    palabras clave probatorias (``contrato'', ``correo'',
+    ``testimonio'', ``peritaje'', etc.) en el texto.
+  \item \textbf{Agente Normativo} (\texttt{NormativeAgent}): Captura
+    oraciones completas que contienen términos normativos (``ley'',
+    ``artículo'', ``código'', ``constitución'') mediante el patrón
+    \texttt{keyword + [\^{}.]\{0,120\}.}.
+\end{itemize}
+
+\subsection{Construcción de la matriz HPN}
+
+El \texttt{HPNAgent} cruza hechos, pruebas y normas por índice
+secuencial para construir la matriz Hecho-Prueba-Norma. Cada fila
+recibe un estado epistémico (Completo si tiene prueba y norma;
+Parcial en caso contrario) y un nivel de riesgo (Bajo si está
+completo; Alto si es parcial). Esta matriz es la columna vertebral
+del análisis y alimenta todos los componentes del dashboard.
+
+\subsection{Generación de red multicapa}
+
+El \texttt{NetworkAgent} construye un grafo dirigido con
+\texttt{networkx} que organiza los nodos en cinco capas: actores,
+hechos, pruebas, normas y riesgos. Las aristas representan relaciones
+semánticas: \textit{soporta} (prueba \(\rightarrow\) hecho),
+\textit{activa} (hecho \(\rightarrow\) norma), \textit{riesgo}
+(riesgo \(\rightarrow\) hecho) y \textit{participa} (actor
+\(\rightarrow\) hecho, solo si el nombre del actor aparece en el
+texto del hecho). Esta estructura permite visualizar dependencias,
+rutas críticas y el impacto de escenarios simulados.
+
+\subsection{Métricas estratégicas}
+
+El panel de métricas calcula seis indicadores compuestos a partir de
+la matriz HPN y la estructura de red:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Cobertura}: Porcentaje de filas con estado epistémico
+    ``Completo''.
+  \item \textbf{Fragilidad}: Porcentaje de filas con riesgo ``Alto''.
+  \item \textbf{Centralidad}: Densidad relativa de la red
+    (\(\frac{E}{N(N-1)}\)).
+  \item \textbf{Contradicción}: Porcentaje de filas con
+    contradicciones distintas de ``Ninguna''.
+  \item \textbf{Robustez}: Complemento de la fragilidad (100\% --
+    fragilidad).
+  \item \textbf{Trazabilidad}: Porcentaje de filas con respaldo
+    probatorio (prueba distinta de ``Sin prueba'').
+\end{enumerate}
+
+\subsection{Dashboard de señales accionables}
+
+El frontend React traduce los datos en ocho pestañas funcionales:
+Vista General (barra de preparación, señales accionables, entidades),
+Matriz HPN (tabla interactiva con seis filtros), Red Multicapa (grafo
+coloreado por capa con leyenda), Métricas (semáforo estratégico),
+Alertas (cinco categorías: vacíos críticos, pruebas únicas,
+contradicciones, baja trazabilidad, sin soporte probatorio),
+Simulador (comparación antes/después con delta de nodos y aristas),
+Preguntas (interrogatorio, contraexamen, cliente y perito) y Reporte
+(exportación a PDF y HTML).
+
+\subsection{Simulación de escenarios}
+
+El \texttt{SimulatorAgent} ejecuta cuatro escenarios hipotéticos
+sobre el grafo base: exclusión de prueba (elimina una arista),
+nuevo peritaje (agrega nodo en capa pruebas), testigo contradictorio
+(agrega nodo en capa pruebas) y nueva norma favorable (agrega nodo
+en capa normas). Cada escenario reporta el cambio en número de nodos
+y aristas, permitiendo al litigante evaluar el impacto antes de tomar
+decisiones procesales.
+
+\section{Limitaciones}
+
+\subsection{Extracción basada exclusivamente en reglas}
+
+Todos los agentes utilizan expresiones regulares y listas de palabras
+clave. No emplean modelos de lenguaje (NLP profundo, transformers,
+LLMs) ni aprendizaje automático. Esto limita la calidad de la
+extracción:
+
+\begin{itemize}[nosep]
+  \item \texttt{FactualAgent} divide por puntos, lo que fragmenta
+    incorrectamente oraciones con abreviaturas (``S.A.S.'',
+    ``No.'') o numeración (``1.5'').
+  \item \texttt{EvidenceAgent} solo detecta la primera ocurrencia de
+    cada palabra clave por chunk, ignorando contextos donde la
+    palabra clave aparece en un sentido no probatorio.
+  \item \texttt{NormativeAgent} captura hasta 120 caracteres después
+    de la keyword, pero no distingue entre una cita normativa
+    genuina y una mención casual del término.
+\end{itemize}
+
+\subsection{Ausencia de un agente de contradicciones}
+
+Aunque la matriz HPN incluye un campo \texttt{contradicciones}, este
+siempre se inicializa como ``Ninguna''. No existe un agente dedicado
+a detectar contradicciones entre hechos, entre pruebas o entre
+declaraciones. El agente \texttt{auditor\_agent.py} existe como
+archivo pero está vacío.
+
+\subsection{Simulador superficial}
+
+El \texttt{SimulatorAgent} modifica el grafo de forma elemental
+(eliminar una arista, agregar un nodo) sin modelar el efecto
+colateral que estos cambios tendrían en las métricas de red
+(centralidad, densidad, PageRank). Tampoco considera la
+jurisprudencia ni el contexto normativo para ponderar escenarios.
+
+\subsection{Frontend sin estado persistente}
+
+El dashboard React no persiste el estado del caso entre sesiones.
+Cada carga de PDF comienza desde cero; no hay historial de casos,
+comparación entre múltiples expedientes ni almacenamiento local.
+
+\subsection{Dependencia de NetworkX para métricas}
+
+El agente de métricas (\texttt{MetricsAgent}) depende de
+\texttt{networkx} para betweenness centrality y PageRank. En grafos
+muy pequeños o muy dispersos (como los generados a partir de un solo
+documento), estas métricas pueden ser cero o no informativas, como
+se observa en los datos de salida donde
+\texttt{``betweenness''} contiene valores cercanos a cero y
+\texttt{``pagerank''} es un diccionario vacío.
+
+\section{Errores Encontrados y Corregidos}
+
+\subsection{Clasificación incorrecta de actores}
+
+\subsubsection*{Problema}
+
+El patrón regex original del \texttt{ActorsAgent} capturaba cualquier
+secuencia de dos o más palabras con inicial mayúscula, incluyendo
+referencias legales como ``Código Civil'', ``La Constitución
+Política'', ``Código General del Proceso'' y ``Corte Suprema''.
+Estos términos no son personas jurídicas ni actores procesales, pero
+se incluían en la lista de actores, inflando artificialmente el
+conteo y distorsionando la red.
+
+\subsubsection*{Solución}
+
+Se implementó una lista de exclusión (\texttt{EXCLUDE\_WORDS}) con 35
+términos legales comunes (``código'', ``constitución'', ``juzgado'',
+``tribunal'', etc.) y se agregó una validación: si cualquiera de las
+palabras del nombre candidato está en la lista de exclusión, se
+descarta. Adicionalmente, se limitó el patrón a un máximo de tres
+palabras (\texttt{\{1,2\}} en el cuantificador) para evitar capturar
+frases completas.
+
+\subsection{Actor único en la red multicapa}
+
+\subsubsection*{Problema}
+
+El \texttt{NetworkAgent} original conectaba únicamente al primer actor
+de la lista (\texttt{actors[0]["nombre"]}) con todos los hechos,
+ignorando por completo al resto de los actores. Esto producía un
+grafo en estrella donde un solo nodo acumulaba todas las aristas y
+los demás actores aparecían como nodos aislados.
+
+\subsubsection*{Solución}
+
+Se modificó el bucle de creación de aristas para iterar sobre todos
+los actores. Para cada actor, se verifica si su nombre aparece en el
+texto del hecho (comparación \texttt{lower()} de ambos lados). Solo
+si existe coincidencia se crea la arista \textit{participa}. Esto
+produce una red más realista donde cada actor se conecta únicamente
+a los hechos que lo mencionan.
+
+\subsection{Ausencia de normas en la respuesta del backend}
+
+\subsubsection*{Problema}
+
+El \texttt{NormativeAgent} extraía normas y las pasaba al
+\texttt{HPNAgent}, pero el diccionario \texttt{entities} retornado
+por la API no incluía la clave \texttt{"normas"}. El frontend
+mostraba ``Normas Citadas'' vacío porque \texttt{entities.normas}
+era un arreglo vacío.
+
+\subsubsection*{Solución}
+
+Se modificó \texttt{HPNService.generate()} para que, después de
+extraer las normas, las agregue al diccionario \texttt{entities}
+como \texttt{entities["normas"]} con la estructura
+\texttt{\{"nombre": descripcion, "tipo": "norma"\}}. Dado que
+\texttt{entities} es un diccionario mutable pasado por referencia, la
+modificación persiste cuando se construye la respuesta JSON en
+\texttt{app.py}.
+
+\subsection{Normas genéricas (solo keyword)}
+
+\subsubsection*{Problema}
+
+El \texttt{NormativeAgent} original almacenaba únicamente la palabra
+clave encontrada (``ley'', ``artículo'', ``código''), sin capturar
+el contexto. En el dashboard aparecían normas como ``artículo'' en
+lugar de ``artículo 1602 del Código Civil establece que todo
+contrato...''.
+
+\subsubsection*{Solución}
+
+Se reemplazó la búsqueda por ocurrencia exacta con una expresión
+regular que captura hasta 120 caracteres después de la keyword
+(\texttt{re.escape(keyword) + r"[\^{}.]\{0,120\}\."}), extrayendo la
+oración completa donde aparece la referencia normativa. Se agregó
+un conjunto \texttt{seen} para evitar duplicados.
+
+\subsection{Estilos Vite en conflicto con el dashboard}
+
+\subsubsection*{Problema}
+
+Los estilos CSS predeterminados de Vite (\texttt{index.css})
+establecían un ancho fijo para \texttt{\#root}, centro de texto
+obligatorio y variables de color que interferían con el layout del
+dashboard.
+
+\subsubsection*{Solución}
+
+Se reescribió \texttt{index.css} eliminando todas las reglas
+específicas de Vite y conservando solo un reseteo mínimo:
+\texttt{box-sizing}, \texttt{font-family}, y
+\texttt{min-height: 100vh} para \texttt{\#root}. Todos los estilos
+del dashboard se definen exclusivamente en
+\texttt{Dashboard.css}.
+
+\section{Decisiones Humanas Requeridas}
+
+\subsection{Validación de entidades extraídas}
+
+El sistema no distingue entre un nombre de persona real y una entidad
+mencionada incidentalmente. Por ejemplo, si el texto dice ``según la
+Corte Suprema'', la palabra ``Corte'' hoy es filtrada, pero ``Suprema''
+aislada podría no serlo. Un abogado debe revisar la lista de actores
+extraídos y confirmar o descartar cada entrada.
+
+\subsection{Clasificación del elemento jurídico}
+
+La matriz HPN asigna automáticamente
+\texttt{elemento\_juridico: "Pendiente Clasificación"} a todas las
+filas. La decisión de clasificar cada hecho como pretensión,
+excepción, fundamento o carga procesal es enteramente humana y debe
+realizarse caso por caso.
+
+\subsection{Evaluación de contradicciones}
+
+El campo \texttt{contradicciones} se inicializa como ``Ninguna'' para
+todas las filas. Detectar contradicciones reales entre hechos,
+testimonios o pruebas requiere análisis jurídico contextual que el
+sistema no puede realizar. El abogado debe identificar y documentar
+cada contradicción manualmente.
+
+\subsection{Determinación de acciones sugeridas}
+
+La acción sugerida predeterminada (\texttt{"Validar soporte"}) es
+genérica. El profesional debe evaluar cada fila de la matriz HPN y
+determinar la acción concreta: interponer recurso, solicitar prueba
+pericial, preparar contraexamen, etc.
+
+\subsection{Interpretación de métricas estratégicas}
+
+Las métricas (cobertura, fragilidad, robustez, etc.) son indicadores
+cuantitativos que requieren interpretación jurídica cualitativa. Una
+cobertura alta no significa necesariamente que el caso esté bien
+fundamentado; puede indicar que las normas y pruebas asignadas son
+genéricas. El abogado debe contextualizar cada métrica dentro de la
+estrategia legal global.
+
+\subsection{Selección y ponderación de escenarios}
+
+El simulador ofrece cuatro escenarios predefinidos (exclusión de
+prueba, nuevo peritaje, testigo contradictorio, nueva norma
+favorable), pero la decisión de cuál simular primero, con qué
+variantes y con qué peso estratégico depende del criterio del
+litigante. El sistema no evalúa probabilidades ni recomienda
+prioridades.
+
+\subsection{Redacción de preguntas para audiencia}
+
+El panel de preguntas sugeridas genera interrogantes automáticas
+basadas en patrones de la matriz HPN. Sin embargo, la redacción
+final, el orden de formulación y la adaptación al estilo del
+juzgador son decisiones que solo el abogado puede tomar. Las
+preguntas generadas son insumos, no sustitutos del cuestionario
+definitivo.
+
+\subsection{Exportación y confidencialidad}
+
+El reporte exportable (PDF/HTML) contiene información sensible del
+caso. La decisión de compartir, almacenar o imprimir el documento
+debe cumplir con las normas de confidencialidad abogado-cliente y
+protección de datos personales.
+
+\section{Conclusiones}
+
+La arquitectura multiagente implementada demuestra que es posible
+automatizar etapas significativas del análisis jurídico preliminar:
+extracción de entidades, construcción de matriz HPN, generación de
+red multicapa, cálculo de métricas y simulación de escenarios. El
+dashboard traduce estas estructuras de datos en señales accionables
+que asisten al litigante en la preparación de su teoría del caso.
+
+No obstante, el sistema presenta limitaciones importantes derivadas
+de su enfoque basado exclusivamente en reglas: la extracción es
+sensible al formato del documento de entrada, no detecta
+contradicciones, no pondera escenarios con criterios jurídicos y
+depende de validación humana en todos los puntos críticos. Los
+errores encontrados (actores mal clasificados, red centrada en un
+solo nodo, normas vacías o genéricas, estilos en conflicto) fueron
+corregidos durante el desarrollo, pero evidencian la necesidad de
+supervisión continua.
+
+El sistema es una herramienta de aumentación, no de reemplazo. Su
+valor reside en reducir el trabajo mecánico de extracción y
+organización de información, permitiendo al abogado concentrarse en
+las decisiones estratégicas de alto nivel que ningún algoritmo puede
+suplir.
+
+% ---- REFERENCIAS ----
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem{american2020}
+American Psychological Association. (2020).
+\textit{Publication manual of the American Psychological Association}
+(7th ed.).
+
+\bibitem{hagerty2023}
+Hagerty, A. (2023). \textit{Multi-agent systems for legal reasoning:
+A survey}. Artificial Intelligence and Law, 31(2), 245--278.
+\url{https://doi.org/10.1007/s10506-022-09335-0}
+
+\bibitem{networkx2014}
+Hagberg, A., Schult, D., \& Swart, P. (2014).
+\textit{Exploring network structure, dynamics, and function using
+NetworkX}. Proceedings of the 7th Python in Science Conference
+(SciPy 2008), 11--15.
+
+\bibitem{pydantic2023}
+Colvin, S. (2023). \textit{Pydantic: Data validation using Python
+type hints} (Version 2.0). \url{https://docs.pydantic.dev/}
+
+\bibitem{react2024}
+Meta Platforms, Inc. (2024). \textit{React: A JavaScript library for
+building user interfaces} (Version 19). \url{https://react.dev/}
+
+\bibitem{vite2025}
+Vite Team. (2025). \textit{Vite: Next generation frontend tooling}
+(Version 8). \url{https://vite.dev/}
+
+\bibitem{flask2024}
+Pallets Project. (2024). \textit{Flask: Web development, one drop at
+a time} (Version 3.0). \url{https://flask.palletsprojects.com/}
+
+\end{thebibliography}
+
+\end{document}

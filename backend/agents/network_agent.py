@@ -124,18 +124,22 @@ class NetworkAgent:
 
         actors = entities["actores"]
 
-        if actors:
+        for actor in actors:
 
-            first_actor = actors[0]["nombre"]
+            actor_name = actor["nombre"] if isinstance(actor, dict) else actor
 
             for row in hpn_rows:
 
                 fact_id = f"FACT_{row['id']}"
 
-                graph.add_edge(
-                    first_actor,
-                    fact_id,
-                    relation="participa"
-                )
+                fact_text = (row.get("hecho") or "").lower()
+
+                if actor_name.lower() in fact_text:
+
+                    graph.add_edge(
+                        actor_name,
+                        fact_id,
+                        relation="participa"
+                    )
 
         return graph

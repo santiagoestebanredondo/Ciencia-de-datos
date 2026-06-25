@@ -1,0 +1,781 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{geometry}
+
+\doublespacing
+\setlength{\parindent}{0.5in}
+
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  captionpos=t,
+  aboveskip=12pt,
+  belowskip=6pt,
+  language=Python,
+  keywordstyle=\bfseries\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red},
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Arquitectura Multiagente -- Informe Técnico}}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\title{\textbf{Informe Técnico: \\ Sistema Multiagente para Teoría del Caso Aumentada}}
+\author{Santiago Esteban Redondo Perdomo \\ Juan David Conde Duarte}
+\date{}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{2cm}
+  {\LARGE\bfseries Informe Técnico: \\[6pt]
+  Sistema Multiagente para Teoría del Caso Aumentada}\\[2cm]
+  {\large Santiago Esteban Redondo Perdomo \\[4pt]
+  Juan David Conde Duarte}\\[1cm]
+  {\large \today}
+  \vfill
+\end{center}
+\newpage
+
+\section{Arquitectura General del Sistema}
+
+El sistema sigue una arquitectura cliente-servidor. El backend está
+implementado en Python 3 con Flask y expone tres endpoints REST:
+
+\begin{itemize}[nosep]
+  \item \texttt{POST /upload-pdf} -- Recibe un PDF, lo procesa
+    mediante agentes y devuelve un JSON con entidades, matriz HPN,
+    métricas y escenarios.
+  \item \texttt{GET /network} -- Retorna el grafo multicapa
+    previamente generado desde \texttt{outputs/network.json}.
+  \item \texttt{GET /metrics} -- Retorna las métricas desde
+    \texttt{outputs/metrics.json}.
+  \item \texttt{GET /scenarios} -- Retorna los escenarios desde
+    \texttt{outputs/scenarios.json}.
+\end{itemize}
+
+El frontend es una aplicación React 19 con Vite 8 que consume estos
+endpoints y presenta un dashboard con ocho pestañas.
+
+\subsection{Flujo de procesamiento de un PDF}
+
+\noindent Al cargar un PDF, el backend ejecuta la siguiente pipeline:
+
+\begin{enumerate}[nosep]
+  \item \texttt{PDFService.extract(path)} $\rightarrow$
+    \texttt{IngestionAgent.process\_pdf()} $\rightarrow$ \texttt{chunks[]}
+
+    El \texttt{IngestionAgent} usa PyMuPDF (\texttt{fitz}) para
+    extraer el texto página por página. Cada página se convierte en
+    un chunk con la estructura:
+    \texttt{\{page: int, text: str, hash: str\}}. El hash SHA-256
+    permite detectar duplicados.
+
+  \item \texttt{ExtractionService.execute(chunks)} $\rightarrow$
+    \texttt{entities}
+
+    Orquesta tres agentes de extracción:
+    \texttt{FactualAgent}, \texttt{ActorsAgent} y
+    \texttt{EvidenceAgent}.
+
+  \item \texttt{HPNService.generate(chunks, entities)} $\rightarrow$
+    \texttt{hpn\_matrix[]}
+
+    Ejecuta el \texttt{NormativeAgent} para extraer normas del texto
+    y luego el \texttt{HPNAgent} para cruzar hechos, pruebas y normas
+    en una matriz estructurada.
+
+  \item \texttt{ExportService.export\_hpn\_csv()},
+    \texttt{export\_hpn\_json()}
+
+    Persiste la matriz HPN en disco.
+
+  \item \texttt{NetworkService.generate(hpn\_matrix, entities)}
+    $\rightarrow$ \texttt{graph}
+
+    El \texttt{NetworkAgent} construye un \texttt{networkx.DiGraph}
+    con cinco capas de nodos y cuatro tipos de aristas.
+
+  \item \texttt{ExportService.export\_graphml()},
+    \texttt{export\_graph\_json()}
+
+    Persiste el grafo en disco (GraphML y JSON).
+
+  \item \texttt{MetricsService.generate(graph)} $\rightarrow$
+    \texttt{metrics}
+
+    El \texttt{MetricsAgent} calcula nodos, aristas, densidad,
+    grado, betweenness centrality y PageRank.
+
+  \item \texttt{ExportService.export\_metrics\_json()},
+    \texttt{export\_metrics\_csv()}
+
+    Persiste las métricas.
+
+  \item \texttt{SimulationService.generate(graph)} $\rightarrow$
+    \texttt{scenarios[]}
+
+    El \texttt{SimulatorAgent} crea cuatro copias del grafo y
+    aplica una mutación a cada una.
+
+  \item \texttt{ExportService.export\_scenarios()}
+
+    Persiste los escenarios.
+
+  \item Se construye y retorna un JSON con:
+    \texttt{\{success, pages, entities, hpn\_matrix, metrics,
+    scenarios, summary\}}.
+\end{enumerate}
+
+\newpage
+\section{Agentes de Extracción}
+
+\subsection{FactualAgent}
+
+\subsubsection*{Propósito}
+Extraer hechos jurídicos del texto del PDF dividiendo el contenido
+en oraciones y filtrando aquellas con longitud significativa.
+
+\subsubsection*{Implementación}
+\begin{itemize}[nosep]
+  \item Usa el patrón \texttt{\textbackslash d\{1,2\}/\textbackslash
+    d\{1,2\}/\textbackslash d\{4\}} para detectar fechas en el texto.
+  \item Divide el texto de cada chunk por el carácter \texttt{.}
+    para obtener oraciones candidatas.
+  \item Filtra oraciones con menos de 30 caracteres (ruido).
+  \item Cada hecho extraído contiene:
+    \texttt{\{id, descripcion, fecha, fuente\_pagina\}}.
+\end{itemize}
+
+\subsubsection*{Limitación}
+La división por puntos fragmenta incorrectamente oraciones con
+abreviaturas comunes en documentos legales: ``S.A.S.'', ``No.'',
+``art. 1602 C.C.''.
+
+\subsection{ActorsAgent}
+
+\subsubsection*{Propósito}
+Identificar nombres de personas y partes procesales mencionadas en
+el documento.
+
+\subsubsection*{Implementación}
+\begin{itemize}[nosep]
+  \item Expresión regular:
+    \texttt{[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\textbackslash
+    s[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)\{1,2\}}
+
+    Captura secuencias de 2 a 3 palabras con inicial mayúscula
+    (ej: ``Juan Pérez'', ``María García'').
+
+  \item Lista de exclusión (\texttt{EXCLUDE\_WORDS}) con 35 términos
+    legales: código, constitución, decreto, juzgado, tribunal,
+    artículo, demanda, etc.
+
+    Si alguna palabra del nombre candidato pertenece a esta lista,
+    se descarta.
+
+  \item Control de duplicados mediante un conjunto \texttt{found}.
+\end{itemize}
+
+\subsubsection*{Salida}
+\texttt{\{nombre: str, tipo: str\}} con \texttt{tipo} fijo en
+\texttt{"persona"}.
+
+\subsection{EvidenceAgent}
+
+\subsubsection*{Propósito}
+Detectar en el texto las pruebas o medios de prueba mencionados.
+
+\subsubsection*{Implementación}
+\begin{itemize}[nosep]
+  \item Lista fija de 9 keywords probatorias: contrato, correo,
+    mensaje, factura, peritaje, audio, video, testimonio, documento.
+  \item Búsqueda \texttt{in} (casefold) en el texto de cada chunk.
+  \item Cada evidencia contiene:
+    \texttt{\{id, descripcion, tipo, fuente\_pagina\}}.
+\end{itemize}
+
+\subsubsection*{Limitación}
+Solo detecta la primera ocurrencia de cada keyword por chunk.
+No distingue entre ``presentar un contrato'' y ``el contrato social
+de la empresa''.
+
+\subsection{NormativeAgent}
+
+\subsubsection*{Propósito}
+Extraer referencias normativas (leyes, artículos, códigos, decretos,
+sentencias) del texto del documento.
+
+\subsubsection*{Implementación}
+\begin{itemize}[nosep]
+  \item Lista de 8 keywords: ley, artículo, codigo, constitución,
+    decreto, sentencia, jurisprudencia, norma.
+  \item Para cada keyword, compila una expresión regular:
+    \texttt{re.escape(keyword) + r"[\^{}.]\{0,120\}\."}
+
+    Captura desde la keyword hasta el siguiente punto (máximo 120
+    caracteres), obteniendo la oración completa donde aparece la
+    referencia normativa.
+
+  \item Control de duplicados con un conjunto \texttt{seen}
+    (comparación casefold).
+\end{itemize}
+
+\subsubsection*{Salida}
+\texttt{\{id, descripcion, pagina\}} donde
+\texttt{descripcion} es la oración completa.
+
+\newpage
+\section{Matriz Hecho--Prueba--Norma (HPN)}
+
+\subsection{Construcción}
+
+La matriz HPN es la estructura de datos central del sistema. Se
+construye en \texttt{HPNAgent.build\_hpn(facts, evidences, norms)}
+mediante un cruce por índice secuencial:
+
+\noindent Para cada hecho en la posición \texttt{i}:
+
+\begin{itemize}[nosep]
+  \item Se toma la prueba \texttt{evidences[i]} si existe;
+    en caso contrario se asigna \texttt{"Sin prueba"}.
+  \item Se toma la norma \texttt{norms[i]} si existe;
+    en caso contrario se asigna \texttt{"Sin norma"}.
+  \item El \texttt{estado\_epistemico} se define como:
+    \begin{itemize}[nosep]
+      \item \texttt{"Completo"} si existe tanto prueba como norma.
+      \item \texttt{"Parcial"} si falta alguno de los dos.
+    \end{itemize}
+  \item El \texttt{riesgo} se define como:
+    \begin{itemize}[nosep]
+      \item \texttt{"Bajo"} si el estado es completo.
+      \item \texttt{"Alto"} si el estado es parcial.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Estructura de cada fila}
+
+\begin{lstlisting}[caption={Estructura de una fila de la matriz HPN}]
+{
+  "id":                "HPN-001",
+  "elemento_juridico": "Pendiente Clasificacion",
+  "hecho":             "El dia 15 de enero de 2025...",
+  "prueba":            "contrato",
+  "norma":             "articulo 1602 del Codigo Civil...",
+  "fuente_expediente": "Pagina 1",
+  "estado_epistemico": "Completo",
+  "riesgo":            "Bajo",
+  "contradicciones":   "Ninguna",
+  "accion_sugerida":   "Validar soporte",
+  "agente_responsable":"Agente HPN",
+  "revision_humana":   "Pendiente"
+}
+\end{lstlisting}
+
+\subsection{Utilidad jurídica}
+
+La matriz HPN permite responder preguntas como:
+\begin{itemize}[nosep]
+  \item ¿Qué hechos tienen respaldo probatorio y normativo?
+    (filas con estado \texttt{Completo} y riesgo \texttt{Bajo})
+  \item ¿Qué hechos son débiles?
+    (filas con estado \texttt{Parcial} o riesgo \texttt{Alto})
+  \item ¿Qué normas están citadas y qué hechos activan?
+  \item ¿Qué prueba respalda cada hecho?
+\end{itemize}
+
+\newpage
+\section{Red Compleja Multicapa}
+
+\subsection{Definición}
+
+La red es un grafo dirigido (\texttt{networkx.DiGraph}) donde los
+nodos representan entidades jurídicas organizadas en cinco capas y
+las aristas representan relaciones semánticas entre ellas.
+
+\subsection{Capas de nodos}
+
+\begin{enumerate}[nosep]
+  \item \textbf{Actores}: Nombres de personas extraídas por
+    \texttt{ActorsAgent}. Atributo: \texttt{layer="actores"}.
+  \item \textbf{Hechos}: Nodos con prefijo \texttt{FACT\_HPN-XXX}.
+    Atributos: \texttt{layer="hechos"}, \texttt{label=hecho}.
+  \item \textbf{Pruebas}: Nodos con prefijo \texttt{EVIDENCE\_HPN-XXX}.
+    Atributos: \texttt{layer="pruebas"}, \texttt{label=prueba}.
+  \item \textbf{Normas}: Nodos con prefijo \texttt{NORM\_HPN-XXX}.
+    Atributos: \texttt{layer="normas"}, \texttt{label=norma}.
+  \item \textbf{Riesgos}: Nodos con prefijo \texttt{RISK\_HPN-XXX}.
+    Atributos: \texttt{layer="riesgos"}, \texttt{label=riesgo}.
+\end{enumerate}
+
+\subsection{Tipos de aristas}
+
+\begin{itemize}[nosep]
+  \item \textbf{soporta} ($EVIDENCE\_X \rightarrow FACT\_X$):
+    La prueba X respalda al hecho X. Peso: 1.
+  \item \textbf{activa} ($FACT\_X \rightarrow NORM\_X$):
+    El hecho X activa la norma X. Peso: 1.
+  \item \textbf{riesgo} ($RISK\_X \rightarrow FACT\_X$):
+    El riesgo X está asociado al hecho X. Peso: 1.
+  \item \textbf{participa} ($ACTOR \rightarrow FACT\_X$):
+    El actor participa en el hecho X. Solo se crea si el nombre
+    del actor aparece textualmente en la descripción del hecho
+    (comparación \texttt{lower()}).
+\end{itemize}
+
+\subsection{Visualización en el frontend}
+
+El componente \texttt{EnhancedNetworkGraph.jsx} renderiza el grafo
+con \texttt{react-force-graph-2d} asignando colores por capa:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Capa} & \textbf{Color} \\
+\midrule
+Actores & \texttt{\#3b82f6} (azul) \\
+Hechos & \texttt{\#f59e0b} (amarillo) \\
+Pruebas & \texttt{\#10b981} (verde) \\
+Normas & \texttt{\#8b5cf6} (púrpura) \\
+Riesgos & \texttt{\#ef4444} (rojo) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Las aristas también se colorean por tipo de relación:
+soporta (verde), activa (púrpura), riesgo (rojo), participa (gris).
+El nodo más central de cada capa se renderiza con mayor tamaño
+(\texttt{nodeRelSize}). Incluye flechas direccionales y tooltip con
+el ID del nodo.
+
+\newpage
+\section{Métricas Estratégicas}
+
+\subsection{Métricas clásicas de red (backend)}
+
+El \texttt{MetricsAgent} calcula las siguientes métricas sobre el
+grafo usando \texttt{networkx}:
+
+\begin{itemize}[nosep]
+  \item \texttt{cantidad\_nodos}: Número total de nodos en el grafo.
+  \item \texttt{cantidad\_aristas}: Número total de aristas.
+  \item \texttt{densidad}: \texttt{nx.density(graph)}.
+    $$D = \frac{2|E|}{|V|(|V|-1)}$$
+  \item \texttt{grado}: \texttt{dict(graph.degree())}. Grado de cada
+    nodo (suma de aristas entrantes y salientes).
+  \item \texttt{betweenness}: \texttt{nx.betweenness\_centrality()}.
+    Mide qué tan central es cada nodo como puente entre otros pares.
+  \item \texttt{pagerank}: \texttt{nx.pagerank()}. Versión de
+    PageRank adaptada a grafos dirigidos.
+\end{itemize}
+
+\subsection{Métricas estratégicas compuestas (frontend)}
+
+El \texttt{StrategicMetricsPanel.jsx} calcula seis indicadores a
+partir de la matriz HPN y las métricas de red:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Cobertura}: $\frac{\text{filas completas}}{\text{total filas}} \times 100$
+
+    Mide qué porcentaje de la matriz HPN tiene tanto prueba como
+    norma asignadas.
+
+  \item \textbf{Fragilidad}: $\frac{\text{filas con riesgo alto}}{\text{total filas}} \times 100$
+
+    Porcentaje de elementos jurídicos en estado de alerta.
+
+  \item \textbf{Centralidad}: $\frac{E}{N(N-1)} \times 100$
+
+    Densidad relativa de la red. Indica qué tan interconectados
+    están los elementos del caso.
+
+  \item \textbf{Contradicción}: $\frac{\text{filas con contradicciones}}{\text{total filas}} \times 100$
+
+    Porcentaje de filas donde se ha detectado alguna contradicción.
+
+  \item \textbf{Robustez}: $100 - \text{fragilidad}$
+
+    Porcentaje de elementos que no presentan riesgo alto.
+
+  \item \textbf{Trazabilidad}: $\frac{\text{filas con prueba asignada}}{\text{total filas}} \times 100$
+
+    Porcentaje de hechos que cuentan con respaldo probatorio.
+\end{enumerate}
+
+\noindent Cada métrica se muestra con un indicador de semáforo:
+verde (bueno), amarillo (regular), rojo (crítico), según umbrales
+definidos en el frontend.
+
+\newpage
+\section{Simulación de Escenarios}
+
+\subsection{Implementación}
+
+El \texttt{SimulatorAgent.simulate(graph)} recibe el grafo base
+(estado actual del caso) y genera cuatro escenarios hipotéticos
+mediante mutaciones controladas del grafo:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Exclusión de prueba}: Clona el grafo y elimina la
+    primera arista de la lista (\texttt{list(graph.edges())[0]}).
+    Reduce el número de aristas en 1.
+
+    \textit{Utilidad}: Modela qué sucede si se declara inadmisible
+    o se pierde una prueba durante el proceso.
+
+  \item \textbf{Nuevo peritaje}: Clona el grafo y agrega un nodo
+    \texttt{NEW\_EXPER} en la capa \texttt{pruebas}. Incrementa el
+    número de nodos en 1.
+
+    \textit{Utilidad}: Evalúa el impacto de incorporar un dictamen
+    pericial adicional.
+
+  \item \textbf{Testigo contradictorio}: Clona el grafo y agrega un
+    nodo \texttt{CONTRADICTORY\_WITNESS} en la capa \texttt{pruebas}.
+    Incrementa el número de nodos en 1.
+
+    \textit{Utilidad}: Modela la aparición de un testigo que
+    contradice la versión de los hechos.
+
+  \item \textbf{Nueva norma favorable}: Clona el grafo y agrega un
+    nodo \texttt{NEW\_NORM} en la capa \texttt{normas}. Incrementa
+    el número de nodos en 1.
+
+    \textit{Utilidad}: Simula el efecto de invocar una norma
+    adicional o una jurisprudencia favorable.
+\end{enumerate}
+
+\subsection{Salida}
+
+\begin{lstlisting}[caption={Ejemplo de respuesta del simulador}]
+[
+  {"name": "Exclusion de prueba",   "nodes": 101, "edges": 95},
+  {"name": "Nuevo peritaje",        "nodes": 102, "edges": 96},
+  {"name": "Testigo contradictorio","nodes": 102, "edges": 96},
+  {"name": "Nueva norma favorable", "nodes": 102, "edges": 96}
+]
+\end{lstlisting}
+
+\subsection{Visualización en el dashboard}
+
+El \texttt{AdvancedScenariosPanel.jsx} muestra los escenarios en un
+grid de tarjetas. La primera tarjeta corresponde al estado actual
+(base) y las siguientes a cada escenario simulado. Para cada
+escenario se calcula el delta ($\Delta$) de nodos y aristas respecto
+a la base, con color verde para deltas positivos y rojo para
+negativos. Se incluye una etiqueta textual del impacto (positivo,
+negativo, neutro).
+
+\newpage
+\section{Componentes del Dashboard}
+
+El frontend organiza la información en ocho pestañas, cada una
+implementada como un componente React independiente.
+
+\subsection{Vista General}
+\label{sec:vista-general}
+
+\texttt{Componente:} definido inline en \texttt{Dashboard.jsx}
+(ReadinessBar, ActionableInsights, CaseOverview).
+
+\begin{itemize}[nosep]
+  \item \textbf{Barra de preparación del caso} (\texttt{ReadinessBar}):
+    Barra horizontal segmentada que muestra la proporción de filas
+    completas (verde), parciales (amarillo) y críticas (rojo) en la
+    matriz HPN. Incluye etiquetas con conteos absolutos.
+
+  \item \textbf{Señales accionables} (\texttt{ActionableInsights}):
+    Siete tarjetas con análisis interpretativo generado
+    automáticamente:
+    \begin{itemize}[nosep]
+      \item Hechos afirmables con fuerza (completos + riesgo bajo)
+      \item Hechos a modular (parciales o riesgo alto)
+      \item Prueba crítica a proteger (tipo de prueba único)
+      \item Documentos a preparar primero (orden de tipos probatorios)
+      \item Excepción a anticipar (filas con contradicciones)
+      \item Puntos no aptos para memorial (baja trazabilidad)
+    \end{itemize}
+
+  \item \textbf{Entidades del caso} (\texttt{CaseOverview}):
+    Grid de cuatro tarjetas mostrando: Actores, Hechos Jurídicos,
+    Pruebas y Normas Citadas. Cada tarjeta lista las entidades
+    extraídas con un badge identificador.
+\end{itemize}
+
+\subsection{Matriz HPN}
+
+\texttt{Componente: FilterableHPNTable.jsx}
+
+\begin{itemize}[nosep]
+  \item Tabla HTML con las columnas: ID, Hecho, Prueba, Norma,
+    Estado, Riesgo, Contradicciones, Acción Sugerida.
+  \item \textbf{Filtros interactivos} (seis controles):
+    \begin{itemize}[nosep]
+      \item Estado epistémico (desplegable con valores únicos)
+      \item Riesgo (desplegable)
+      \item Prueba (desplegable)
+      \item Norma (desplegable)
+      \item Acción sugerida (desplegable)
+      \item Búsqueda textual (campo de texto, busca en todas las
+        columnas)
+    \end{itemize}
+  \item Botón ``Limpiar'' para resetear todos los filtros.
+  \item Conteo de resultados: ``Mostrando X de Y elementos''.
+  \item Filas coloreadas: rojo para riesgo alto, amarillo para
+    estado parcial.
+  \item Badges de estado y riesgo con estilos diferenciados.
+\end{itemize}
+
+\subsection{Red Multicapa}
+
+\texttt{Componente: EnhancedNetworkGraph.jsx}
+
+\begin{itemize}[nosep]
+  \item Grafo interactivo usando \texttt{react-force-graph-2d}.
+  \item \textbf{Leyenda visual}: Muestra las cinco capas con sus
+    colores correspondientes y los cuatro tipos de aristas.
+  \item Nodos coloreados por capa, con tamaño variable según tipo
+    (actores más grandes).
+  \item Aristas coloreadas por tipo de relación, con flechas
+    direccionales.
+  \item Tooltip al pasar el mouse: muestra el ID del nodo.
+  \item \texttt{nodeLabel}: muestra el ID como etiqueta.
+  \item Dimensiones: 1200x600px, con scroll si es necesario.
+\end{itemize}
+
+\subsection{Métricas Estratégicas}
+
+\texttt{Componente: StrategicMetricsPanel.jsx}
+
+\begin{itemize}[nosep]
+  \item Grid de seis tarjetas, cada una con:
+    \begin{itemize}[nosep]
+      \item Nombre de la métrica
+      \item Valor numérico con porcentaje
+      \item Descripción corta
+      \item Borde izquierdo coloreado (semáforo verde/amarillo/rojo)
+    \end{itemize}
+  \item Las seis métricas: Cobertura, Fragilidad, Centralidad,
+    Contradicción, Robustez, Trazabilidad.
+  \item Subtítulo: ``Priorización basada en la matriz HPN y la
+    estructura de red multicapa.''
+\end{itemize}
+
+\subsection{Alertas}
+
+\texttt{Componente: EnhancedAlertsPanel.jsx}
+
+\begin{itemize}[nosep]
+  \item Cinco grupos de alertas, cada uno con un color distintivo:
+    \begin{itemize}[nosep]
+      \item \textbf{Vacíos críticos -- Alto riesgo}: Filas con
+        riesgo \texttt{"Alto"}. Fondo rojo.
+      \item \textbf{Pruebas únicas -- Críticas de proteger}: Tipos
+        de prueba que aparecen una sola vez en la matriz. Fondo azul.
+      \item \textbf{Contradicciones detectadas}: Filas donde
+        \texttt{contradicciones} es distinto de \texttt{"Ninguna"}.
+        Fondo rosa.
+      \item \textbf{Baja trazabilidad}: Filas con estado parcial
+        y sin prueba asignada. Fondo púrpura.
+      \item \textbf{Sin soporte probatorio}: Filas sin prueba
+        asociada (\texttt{"Sin prueba"} o vacío). Fondo azul.
+    \end{itemize}
+  \item Cada alerta muestra el ID de la fila y un extracto del hecho.
+  \item Limitación a 10 elementos por grupo para evitar saturación
+    visual.
+\end{itemize}
+
+\subsection{Simulador}
+
+\texttt{Componente: AdvancedScenariosPanel.jsx}
+
+\begin{itemize}[nosep]
+  \item Grid de tarjetas. La primera es el estado actual (base),
+    resaltada con borde azul.
+  \item Cada escenario muestra:
+    \begin{itemize}[nosep]
+      \item Nombre del escenario
+      \item Nodos y aristas absolutos
+      \item $\Delta$ nodos y $\Delta$ aristas respecto a la base
+        (con color según signo)
+      \item Etiqueta de impacto: positivo (verde), negativo (rojo),
+        neutro (gris)
+    \end{itemize}
+  \item Etiquetas de impacto predefinidas para cada escenario:
+    \begin{itemize}[nosep]
+      \item Exclusión de prueba: Negativo
+      \item Nuevo peritaje: Positivo
+      \item Testigo contradictorio: Positivo
+      \item Nueva norma favorable: Positivo
+    \end{itemize}
+\end{itemize}
+
+\subsection{Preguntas Sugeridas}
+
+\texttt{Componente: QuestionsPanel.jsx}
+
+\begin{itemize}[nosep]
+  \item Genera preguntas automáticas basadas en la matriz HPN y las
+    entidades extraídas.
+  \item Cuatro categorías, cada una con un color de borde:
+    \begin{itemize}[nosep]
+      \item \textbf{Interrogatorio directo} (borde púrpura):
+        Preguntas sobre hechos completos y sin controversia.
+      \item \textbf{Contraexamen} (borde amarillo): Preguntas sobre
+        hechos débiles, controvertidos o con contradicciones.
+      \item \textbf{Aclaración al cliente} (borde verde): Preguntas
+        sobre tipos de prueba y disponibilidad de documentos.
+      \item \textbf{Consulta a perito} (borde rosa): Preguntas sobre
+        debilidades probatorias que requieren peritaje.
+    \end{itemize}
+  \item Las preguntas se construyen interpolando datos reales del
+    caso: IDs de fila HPN, fragmentos de hechos, tipos de prueba,
+    nombres de actores.
+  \item Agrupación por categoría con subtítulos y conteos.
+\end{itemize}
+
+\subsection{Reporte Exportable}
+
+\texttt{Componente: ExportPanel.jsx}
+
+\begin{itemize}[nosep]
+  \item Genera un documento HTML completo con:
+    \begin{itemize}[nosep]
+      \item Resumen ejecutivo (metadatos del caso, conteo de
+        entidades)
+      \item Matriz HPN completa en tabla HTML
+      \item Entidades del caso (actores, hechos, pruebas, normas)
+      \item Métricas estratégicas (cobertura, fragilidad,
+        trazabilidad)
+      \item Escenarios simulados
+    \end{itemize}
+  \item \textbf{Botón ``Exportar PDF''}: Abre el HTML en una nueva
+    ventana y ejecuta \texttt{window.print()}, permitiendo al
+    usuario guardar como PDF desde el diálogo de impresión del
+    navegador.
+  \item \textbf{Botón ``Exportar HTML''}: Descarga el documento como
+    archivo \texttt{.html} mediante \texttt{Blob} y
+    \texttt{URL.createObjectURL()}.
+  \item Vista previa del reporte dentro del dashboard, renderizada
+    con \texttt{dangerouslySetInnerHTML}.
+  \item Estilos CSS embebidos en el HTML para garantizar formato
+    consistente al imprimir.
+\end{itemize}
+
+\newpage
+\section{Diagrama de Arquitectura}
+
+\noindent El siguiente diagrama de flujo muestra el recorrido
+completo de los datos desde la carga del PDF hasta la visualización
+en el dashboard:
+
+\begin{verbatim}
++-----------+     +------------------+     +------------------+
+|   PDF     | --> | IngestionAgent   | --> | ExtractionService|
+| (upload)  |     | (fitz) chunks[]  |     |                   |
++-----------+     +------------------+     +--+----+----+------+
+                                               |    |    |
+                          FactualAgent <--------+    |    |
+                          ActorsAgent  <-------------+    |
+                          EvidenceAgent<------------------+
+                                               |
+                                               v
+                                     +------------------+
+                                     | NormativeAgent   |
+                                     | (regex oraciones)|
+                                     +--------+---------+
+                                              |
+                                              v
+                                  +-----------------------+
+                                  | HPNAgent              |
+                                  | (cruza por índice)    |
+                                  +----------+------------+
+                                             |
+                                   +---------+---------+
+                                   |                   |
+                                   v                   v
+                            +-----------+     +------------------+
+                            | Export    |     | NetworkAgent     |
+                            | CSV/JSON  |     | (networkx.DiGraph)|
+                            +-----------+     +--------+---------+
+                                                      |
+                                            +---------+---------+
+                                            |                   |
+                                            v                   v
+                                     +-----------+     +------------------+
+                                     | Metrics   |     | SimulatorAgent   |
+                                     | (nx.grado,|     | (4 escenarios)   |
+                                     |  between, |     +--------+---------+
+                                     |  pagerank)|              |
+                                     +-----+-----+              |
+                                           |                    |
+                                           v                    v
+                                     +-----------+     +------------------+
+                                     | Export    |     | Export           |
+                                     | JSON/CSV  |     | scenarios.json   |
+                                     +-----------+     +------------------+
+                                                               
+                                                               
+  +--------------------------------------------------------------+
+  |                    RESPONSE JSON                              |
+  | {pages, entities, hpn_matrix, metrics, scenarios, summary}   |
+  +--------------------------------------------------------------+
+                           |
+                           v
+  +--------------------------------------------------------------+
+  |                    REACT DASHBOARD                            |
+  |  +-------------+  +-------------+  +--------------------+    |
+  |  | Vista       |  | Matriz HPN  |  | Red Multicapa      |    |
+  |  | General     |  | (filtros)   |  | (force-graph)      |    |
+  |  +-------------+  +-------------+  +--------------------+    |
+  |  +-------------+  +-------------+  +--------------------+    |
+  |  | Métricas    |  | Alertas     |  | Simulador          |    |
+  |  +-------------+  +-------------+  +--------------------+    |
+  |  +-------------+  +-------------+                             |
+  |  | Preguntas   |  | Reporte     |                             |
+  |  | Sugeridas   |  | Exportable  |                             |
+  |  +-------------+  +-------------+                             |
+  +--------------------------------------------------------------+
+\end{verbatim}
+
+\section{Tecnologías Utilizadas}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Componente} & \textbf{Tecnología} \\
+\midrule
+Backend framework & Flask 3.0 (Python 3.10+) \\
+Extracción de texto PDF & PyMuPDF (fitz) \\
+Procesamiento de grafos & NetworkX 3.0 \\
+Exportación de datos & pandas, JSON, GraphML \\
+Frontend framework & React 19 \\
+Herramienta de build & Vite 8 \\
+Grafo interactivo & react-force-graph-2d 1.29 \\
+Peticiones HTTP & Axios 1.18 \\
+Linter & oxlint 1.69 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\end{document}
